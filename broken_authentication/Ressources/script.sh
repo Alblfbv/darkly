@@ -1,8 +1,10 @@
 #!/bin/bash
-echo input the VM ip address :
+
+echo "input the VM ip address :"
 read ip
 
 url="http://${ip}/"
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 while read username; do
 	while read password; do
@@ -14,5 +16,5 @@ while read username; do
 			break 2
 		fi
 	echo "FAILURE - ${username}:${password}"
-	done < passwords.txt
-done < usernames.txt
+	done < $dir/passwords.txt
+done < $dir/usernames.txt
